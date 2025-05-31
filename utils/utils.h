@@ -1,0 +1,3 @@
+
+void clearTerminal();
+void menu();
