@@ -128,7 +128,8 @@ void registerNewSale(){
         .drinkTotal = 0.0f,
         .foodTotal = 0.0f,
         .total = 0.0f,
-        .saleType = PER_KILO 
+        .saleType = PER_KILO ,
+        .date = time(NULL)
     };
 
     printf("Registro de nova venda");
@@ -155,11 +156,13 @@ void registerNewSale(){
     sale.total = sale.foodTotal + sale.drinkTotal;
     printf("\nTotal da Refeição: R$%.2f\n", sale.total);
     printf("- - - - - - - - - - - -\n");
+
+    saveSale(&sale);
+
     printf("Venda registrada com sucesso!\n\n");
     printf("Aperte qualquer tecla para continuar.\n");
     scanf(" %c");
 
-    // TODO: salvar no TXT
 
     return;
 }
