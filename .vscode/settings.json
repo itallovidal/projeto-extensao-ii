@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "stdlib.h": "c"
+        "index.h": "c",
+        "utils.h": "c",
+        "stdio.h": "c",
+        "register_new_sale.h": "c"
     }
 }
