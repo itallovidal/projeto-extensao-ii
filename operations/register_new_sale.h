@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "../utils/utils.h"
 
+#define KILO_PRICE 50.0f
+
 void registerNewSale();
 
 struct DrinkData{
@@ -11,7 +13,7 @@ struct DrinkData{
 };
 
 typedef enum {
-    PER_KILO,
+    PER_KILO = 1,
     MEAL_BOX,
 } SaleType;
 
