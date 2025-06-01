@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <windows.h>
 #include "utils/utils.h"
+#include "operations/index.h"
 
 int main()
 {
@@ -20,6 +21,7 @@ int main()
     switch (option)
     {
     case 1:
+      registerNewSale();
       break;
     case 2:
       break;
