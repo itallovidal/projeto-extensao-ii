@@ -3,4 +3,4 @@
 void clearTerminal();
 void menu();
 
-void printSales(struct SaleList *saleList); 
+void printSales(struct SaleList *saleList);

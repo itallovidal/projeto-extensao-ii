@@ -49,7 +49,7 @@ void showDailySales()
   printf("Total de %d vendas carregadas com sucesso.\n\n", saleList.count);
 
   printSales(&saleList);
-  
+
   printf("Digite qualquer coisa para continuar...");
   scanf(" %c");
 

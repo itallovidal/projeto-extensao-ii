@@ -4,7 +4,6 @@
 #include <time.h>
 #include <string.h>
 
-
 void clearTerminal()
 {
 #ifdef _WIN32
@@ -42,11 +41,10 @@ void printSales(struct SaleList *saleList)
       // TODO: implementar print de refeições por kilo
       break;
     case MEAL_BOX:
-    strcpy(meal, "Quentinha");
+      strcpy(meal, "Quentinha");
     default:
       break;
     }
-
 
     printf("%d | R$%.f | \n", saleList->sales[i].id, saleList->sales[i].total, meal);
   }

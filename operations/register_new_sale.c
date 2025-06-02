@@ -3,27 +3,28 @@
 #include <stdlib.h>
 #include "../types.h"
 
-void saveSale(struct Sale *sale){
+void saveSale(struct Sale *sale)
+{
 
-  FILE *file = fopen(SALES_FILE_PATH, "a");
-  if (file == NULL) {
-    return ;
-  }
+    FILE *file = fopen(SALES_FILE_PATH, "a");
+    if (file == NULL)
+    {
+        return;
+    }
 
+    fprintf(file, "%d %.2f %.2f %.2f %d %ld \n",
+            sale->id,
+            sale->drinkTotal,
+            sale->foodTotal,
+            sale->total,
+            sale->saleType,
+            sale->date);
 
-  fprintf(file, "%d %.2f %.2f %.2f %d %ld \n",
-                                      sale->id, 
-                                      sale->drinkTotal, 
-                                      sale->foodTotal,
-                                      sale->total, 
-                                      sale->saleType, 
-                                      sale->date 
-                                    );
-
-  fclose(file);
+    fclose(file);
 }
 
-SaleType getSaleType(){
+SaleType getSaleType()
+{
     while (1)
     {
         printf("Qual o tipo de venda?\n");
@@ -34,11 +35,13 @@ SaleType getSaleType(){
 
         scanf(" %c", &option);
 
-        if(option == '1'){
+        if (option == '1')
+        {
             return PER_KILO;
-        } 
+        }
 
-        if(option == '2'){
+        if (option == '2')
+        {
             printf("\nAdicionando quentinha de R$20 reais ao pedido.\n");
             return MEAL_BOX;
         }
@@ -47,7 +50,8 @@ SaleType getSaleType(){
     }
 }
 
-int checkIfhasDrink(){
+int checkIfhasDrink()
+{
     while (1)
     {
         printf("\nVocê tem bebida para acrescentar ao pedido?\n");
@@ -57,20 +61,21 @@ int checkIfhasDrink(){
         char option;
         scanf(" %c", &option);
 
-        if(option == '1' || option == '2'){
-            return (int)option - '0'; 
-        } 
+        if (option == '1' || option == '2')
+        {
+            return (int)option - '0';
+        }
 
         printf("\n\nOpção inválida. Digite 1 ou 2.\n");
     }
 }
 
-struct DrinkData getDrinkData(){
+struct DrinkData getDrinkData()
+{
     struct DrinkData drink = {
         .amount = 0,
         .price = 0.0f,
-        .total = 0.0f
-    };
+        .total = 0.0f};
 
     int drinkType;
 
@@ -85,7 +90,6 @@ struct DrinkData getDrinkData(){
         printf("4 - Suco (R$6,00)\n\n");
 
         scanf("%d", &drinkType);
-
 
         switch (drinkType)
         {
@@ -106,7 +110,8 @@ struct DrinkData getDrinkData(){
             break;
         }
 
-        if(drinkType > 0 && drinkType < 5){
+        if (drinkType > 0 && drinkType < 5)
+        {
             isDrinkTypeValid = 0;
         }
     }
@@ -117,16 +122,20 @@ struct DrinkData getDrinkData(){
 
         scanf("%d", &drink.amount);
 
-        if(drink.amount >= 0){
+        if (drink.amount >= 0)
+        {
             printf("\nAdicionando %d bebida(s) ao pedido.\n", drink.amount);
             return drink;
-        } else {
+        }
+        else
+        {
             printf("Quantidade inválida. Tente novamente.\n");
         }
     }
 }
 
-float getMealPrice(){
+float getMealPrice()
+{
     float weight = 0.0f;
 
     while (1)
@@ -134,43 +143,47 @@ float getMealPrice(){
         printf("\nDigite o peso da refeição em gramas:\n");
         scanf("%f", &weight);
 
-        if(weight > 0.0f){
+        if (weight > 0.0f)
+        {
             float kilos = weight / 1000.0f;
             printf("\nPeso da refeição: %.2f gramas / %.2f quilos\n", weight, kilos);
 
             return kilos * KILO_PRICE;
-        } 
+        }
 
         printf("\n\nPeso inválido. Tente novamente.\n");
     }
 }
 
-void registerNewSale(){
+void registerNewSale()
+{
     struct Sale sale = {
-        .id = rand() % 1000, 
+        .id = rand() % 1000,
         .drinkTotal = 0.0f,
         .foodTotal = 0.0f,
         .total = 0.0f,
-        .saleType = PER_KILO ,
-        .date = time(NULL)
-    };
+        .saleType = PER_KILO,
+        .date = time(NULL)};
 
     printf("Registro de nova venda");
     printf("\n\n- - - - - - - - - - \n\n");
-    
+
     sale.saleType = getSaleType();
 
-    if(sale.saleType == 1){
+    if (sale.saleType == 1)
+    {
         sale.foodTotal = getMealPrice();
-    } 
-    
-    if(sale.saleType == 2){
+    }
+
+    if (sale.saleType == 2)
+    {
         sale.foodTotal = 20.0f + 0.50f;
     }
 
     int hasDrink = checkIfhasDrink();
 
-    if(hasDrink == 1){
+    if (hasDrink == 1)
+    {
         struct DrinkData drink = getDrinkData();
         sale.drinkTotal = drink.amount * drink.price;
         printf("Total em bebidas: R$%.2f\n", sale.drinkTotal);
@@ -185,7 +198,6 @@ void registerNewSale(){
     printf("Venda registrada com sucesso!\n\n");
     printf("Digite qualquer coisa para continuar.\n");
     scanf(" %c");
-
 
     return;
 }

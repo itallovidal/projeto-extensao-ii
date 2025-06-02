@@ -2,18 +2,21 @@
 #define SALES_FILE_PATH "sales.txt"
 #include <time.h>
 
-struct DrinkData{
+struct DrinkData
+{
     int amount;
     float price;
     float total;
 };
 
-typedef enum {
+typedef enum
+{
     PER_KILO = 1,
     MEAL_BOX,
 } SaleType;
 
-struct Sale {
+struct Sale
+{
     int id;
     float drinkTotal;
     float foodTotal;
@@ -22,7 +25,8 @@ struct Sale {
     time_t date;
 };
 
-struct SaleList{
+struct SaleList
+{
     int count;
     struct Sale *sales;
 };
