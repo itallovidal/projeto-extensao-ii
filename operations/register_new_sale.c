@@ -214,7 +214,7 @@ void registerNewSale(){
     saveSale(&sale);
 
     printf("Venda registrada com sucesso!\n\n");
-    printf("Aperte qualquer tecla para continuar.\n");
+    printf("Digite qualquer coisa para continuar.\n");
     scanf(" %c");
 
 
