@@ -81,20 +81,8 @@ void showMonthlySales()
 
     struct SaleList saleList = getSalesByMonth();
     struct Hashmap MonthlyHashmap = getSalesByMonthHashmap(&saleList);
-    printf("Mês | Total \n");
 
-    for (int i = 0; i < MonthlyHashmap.size; i++)
-    {
-        char monthName[12][20] = {
-            "Janeiro", "Fevereiro", "Março", "Abril", "Maio",
-            "Junho", "Julho", "Agosto", "Setembro", "Outubro",
-            "Novembro", "Dezembro"};
-
-        char month[20];
-        strcpy(month, monthName[MonthlyHashmap.map[i].id]);
-
-        printf("%s | R$%.2f \n", month, MonthlyHashmap.map[i].total);
-    }
+    printSalesByMonth(&MonthlyHashmap);
     printPause();
 
     return;

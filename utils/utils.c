@@ -50,6 +50,24 @@ void printSales(struct SaleList *saleList)
   }
 }
 
+void printSalesByMonth(struct Hashmap *monthlyHashmap)
+{
+  printf("Mês | Total \n");
+
+  for (int i = 0; i < monthlyHashmap->size; i++)
+  {
+    char monthName[12][20] = {
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio",
+        "Junho", "Julho", "Agosto", "Setembro", "Outubro",
+        "Novembro", "Dezembro"};
+
+    char month[20];
+    strcpy(month, monthName[monthlyHashmap->map[i].id]);
+
+    printf("%s | R$%.2f \n", month, monthlyHashmap->map[i].total);
+  }
+}
+
 struct tm extractTime(long int timestamp)
 {
   time_t rawTime = (time_t)timestamp;
@@ -66,7 +84,7 @@ struct tm extractTime(long int timestamp)
 
 void printPause()
 {
-  printf("Digite qualquer coisa para continuar...");
+  printf("\nDigite qualquer coisa para continuar...");
 
   char dummy;
   scanf(" %c", &dummy);

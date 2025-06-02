@@ -15,7 +15,8 @@ struct Hashmap
 void clearTerminal();
 void menu();
 void printPause();
-
+void printSalesByMonth(struct Hashmap *monthlyHashmap);
 void printSales(struct SaleList *saleList);
+
 struct tm extractTime(long int timestamp);
 int getMapIndex(struct Hashmap *hashmap, int id);
