@@ -9,6 +9,12 @@ struct DrinkData
     float total;
 };
 
+struct Food
+{
+    float weight;
+    float total;
+};
+
 typedef enum
 {
     PER_KILO = 1,
@@ -19,7 +25,7 @@ struct Sale
 {
     int id;
     float drinkTotal;
-    float foodTotal;
+    struct Food food;
     float total;
     SaleType saleType;
     time_t date;

@@ -17,16 +17,23 @@ struct SaleList getSalesByDay()
 
   struct Sale currentSale;
 
-  while (fscanf(file, "%d %f %f %f %d %ld",
+  int saleTypeTemp;
+
+  while (fscanf(file, "%d %f %f %f %f %d %ld",
                 &currentSale.id,
                 &currentSale.drinkTotal,
-                &currentSale.foodTotal,
+                &currentSale.food.weight,
+                &currentSale.food.total,
                 &currentSale.total,
-                &currentSale.saleType,
-                &currentSale.date) == 6)
+                &saleTypeTemp,
+                &currentSale.date) == 7)
   {
+    printf("Carregando venda %d...\n", currentSale.id);
+    currentSale.saleType = (SaleType)saleTypeTemp;
     saleList.sales[saleList.count] = currentSale;
     saleList.count++;
+
+    printf("Venda %d carregada com sucesso.\n", currentSale.id);
 
     if (saleList.count % 10 == 0)
     {
@@ -51,7 +58,9 @@ void showDailySales()
   printSales(&saleList);
 
   printf("Digite qualquer coisa para continuar...");
-  scanf(" %c");
+
+  char dummy;
+  scanf(" %c", &dummy);
 
   return;
 }

@@ -12,10 +12,11 @@ void saveSale(struct Sale *sale)
         return;
     }
 
-    fprintf(file, "%d %.2f %.2f %.2f %d %ld \n",
+    fprintf(file, "%d %.2f %.2f %.2f %.2f %d %ld \n",
             sale->id,
             sale->drinkTotal,
-            sale->foodTotal,
+            sale->food.weight,
+            sale->food.total,
             sale->total,
             sale->saleType,
             sale->date);
@@ -134,21 +135,25 @@ struct DrinkData getDrinkData()
     }
 }
 
-float getMealPrice()
+struct Food getMealPrice()
 {
-    float weight = 0.0f;
+    struct Food food = {
+        .weight = 0.0f,
+        .total = 0.0f};
 
     while (1)
     {
         printf("\nDigite o peso da refeição em gramas:\n");
-        scanf("%f", &weight);
+        scanf("%f", &food.weight);
 
-        if (weight > 0.0f)
+        if (food.weight > 0.0f)
         {
-            float kilos = weight / 1000.0f;
-            printf("\nPeso da refeição: %.2f gramas / %.2f quilos\n", weight, kilos);
+            float kilos = food.weight / 1000.0f;
+            printf("\nPeso da refeição: %.2f gramas / %.2f quilos\n", food.weight, kilos);
 
-            return kilos * KILO_PRICE;
+            food.total = kilos * KILO_PRICE;
+
+            return food;
         }
 
         printf("\n\nPeso inválido. Tente novamente.\n");
@@ -160,7 +165,10 @@ void registerNewSale()
     struct Sale sale = {
         .id = rand() % 1000,
         .drinkTotal = 0.0f,
-        .foodTotal = 0.0f,
+        .food = {
+            .weight = 0.0f,
+            .total = 0.0f,
+        },
         .total = 0.0f,
         .saleType = PER_KILO,
         .date = time(NULL)};
@@ -172,12 +180,12 @@ void registerNewSale()
 
     if (sale.saleType == 1)
     {
-        sale.foodTotal = getMealPrice();
+        sale.food = getMealPrice();
     }
 
     if (sale.saleType == 2)
     {
-        sale.foodTotal = 20.0f + 0.50f;
+        sale.food.total = 20.0f + 0.50f;
     }
 
     int hasDrink = checkIfhasDrink();
@@ -189,7 +197,7 @@ void registerNewSale()
         printf("Total em bebidas: R$%.2f\n", sale.drinkTotal);
     }
 
-    sale.total = sale.foodTotal + sale.drinkTotal;
+    sale.total = sale.food.total + sale.drinkTotal;
     printf("\nTotal da Refeição: R$%.2f\n", sale.total);
     printf("- - - - - - - - - - - -\n");
 
@@ -197,7 +205,8 @@ void registerNewSale()
 
     printf("Venda registrada com sucesso!\n\n");
     printf("Digite qualquer coisa para continuar.\n");
-    scanf(" %c");
+    char dummy;
+    scanf(" %c", &dummy);
 
     return;
 }

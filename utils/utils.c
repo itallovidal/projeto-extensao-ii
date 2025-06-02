@@ -38,7 +38,7 @@ void printSales(struct SaleList *saleList)
     switch (saleList->sales[i].saleType)
     {
     case PER_KILO:
-      // TODO: implementar print de refeições por kilo
+      sprintf(meal, "%.2f gramas", saleList->sales[i].food.weight);
       break;
     case MEAL_BOX:
       strcpy(meal, "Quentinha");
@@ -46,6 +46,6 @@ void printSales(struct SaleList *saleList)
       break;
     }
 
-    printf("%d | R$%.f | \n", saleList->sales[i].id, saleList->sales[i].total, meal);
+    printf("%d | R$%.f | %s \n", saleList->sales[i].id, saleList->sales[i].total, meal);
   }
 }
