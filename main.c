@@ -1,9 +1,6 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include <windows.h>
 #include "utils/utils.h"
 #include "operations/register_new_sale.h"
-#include <time.h>
 
 int main()
 {

@@ -1,5 +1,59 @@
 #include "register_new_sale.h"
 
+struct SaleList loadSales(){
+  struct SaleList saleList = {
+    .count = 0,
+    .sales = malloc(sizeof(struct Sale) * 10),
+  };
+
+  FILE *file = fopen(SALES_FILE_PATH, "r");
+  if (file == NULL) {
+    return saleList;
+  }
+
+  struct Sale currentSale;
+  
+  while (fscanf(file, "%d %f %f %f %d %ld", 
+                                          &currentSale.id, 
+                                          currentSale.drinkTotal, 
+                                          &currentSale.foodTotal,
+                                          &currentSale.total, 
+                                          &currentSale.saleType, 
+                                          &currentSale.date 
+                                        ) == 6) {
+    saleList.sales[saleList.count] = currentSale;
+    saleList.count++;
+
+    if (saleList.count % 10 == 0) {
+      saleList.sales = realloc(saleList.sales, sizeof(struct Sale) * (saleList.count + 10));
+    }
+  }
+
+  fclose(file);
+
+  return saleList;
+}
+
+void saveSale(struct Sale *sale){
+
+  FILE *file = fopen(SALES_FILE_PATH, "a");
+  if (file == NULL) {
+    return ;
+  }
+
+
+  fprintf(file, "%d %.2f %.2f %.2f %d %ld \n",
+                                      sale->id, 
+                                      sale->drinkTotal, 
+                                      sale->foodTotal,
+                                      sale->total, 
+                                      sale->saleType, 
+                                      sale->date 
+                                    );
+
+  fclose(file);
+}
+
 SaleType getSaleType(){
     while (1)
     {

@@ -1,8 +1,6 @@
-#include "../structs/index.h"
-#include "../structs/index.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 void clearTerminal();
 void menu();
-
-struct SaleList loadSales();
-void saveSale(struct Sale *Sale);
