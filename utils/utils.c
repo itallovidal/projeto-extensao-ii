@@ -49,3 +49,38 @@ void printSales(struct SaleList *saleList)
     printf("%d | R$%.f | %s \n", saleList->sales[i].id, saleList->sales[i].total, meal);
   }
 }
+
+struct tm extractTime(long int timestamp)
+{
+  time_t rawTime = (time_t)timestamp;
+  struct tm formattedDate;
+
+#ifdef _WIN32
+  localtime_s(&formattedDate, &rawTime);
+#else
+  formattedDate = *gmtime(&rawTime);
+#endif
+
+  return formattedDate;
+}
+
+void printPause()
+{
+  printf("Digite qualquer coisa para continuar...");
+
+  char dummy;
+  scanf(" %c", &dummy);
+}
+
+int getMapIndex(struct Hashmap *hashmap, int id)
+{
+  for (int i = 0; i < hashmap->size; i++)
+  {
+    if (hashmap->map[i].id == id)
+    {
+      return i;
+    }
+  }
+
+  return -1;
+}

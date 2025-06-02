@@ -28,12 +28,9 @@ struct SaleList getSalesByDay()
                 &saleTypeTemp,
                 &currentSale.date) == 7)
   {
-    printf("Carregando venda %d...\n", currentSale.id);
     currentSale.saleType = (SaleType)saleTypeTemp;
     saleList.sales[saleList.count] = currentSale;
     saleList.count++;
-
-    printf("Venda %d carregada com sucesso.\n", currentSale.id);
 
     if (saleList.count % 10 == 0)
     {
