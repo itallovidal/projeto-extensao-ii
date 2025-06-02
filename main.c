@@ -1,6 +1,8 @@
 #include <windows.h>
-#include "utils/utils.h"
 #include "operations/register_new_sale.h"
+#include "operations/get_sales_by_day.h"
+#include <stdio.h>
+
 
 int main()
 {
@@ -25,6 +27,7 @@ int main()
       registerNewSale();
       break;
     case 2:
+      showDailySales();
       break;
     case 3:
       break;
