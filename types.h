@@ -2,11 +2,12 @@
 #define SALES_FILE_PATH "sales.txt"
 #include <time.h>
 
-struct DrinkData
+struct Drink
 {
     int amount;
     float price;
     float total;
+    int id;
 };
 
 struct Food
@@ -24,7 +25,7 @@ typedef enum
 struct Sale
 {
     int id;
-    float drinkTotal;
+    struct Drink drink; 
     struct Food food;
     float total;
     SaleType saleType;

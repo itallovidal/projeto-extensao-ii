@@ -21,12 +21,15 @@ struct SaleList getSalesByDay()
 
   while (fscanf(file, "%d %f %f %f %f %d %ld",
                 &currentSale.id,
-                &currentSale.drinkTotal,
+                &currentSale.drink.id,
+                &currentSale.drink.total,
+                &currentSale.drink.price,
+                &currentSale.drink.amount,
                 &currentSale.food.weight,
                 &currentSale.food.total,
                 &currentSale.total,
                 &saleTypeTemp,
-                &currentSale.date) == 7)
+                &currentSale.date) == 10)
   {
     currentSale.saleType = (SaleType)saleTypeTemp;
     saleList.sales[saleList.count] = currentSale;

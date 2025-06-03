@@ -12,9 +12,12 @@ void saveSale(struct Sale *sale)
         return;
     }
 
-    fprintf(file, "%d %.2f %.2f %.2f %.2f %d %ld \n",
+    fprintf(file, "%d %d %.2f %.2f %d %.2f %.2f %.2f %d %ld \n",
             sale->id,
-            sale->drinkTotal,
+            sale->drink.id,
+            sale->drink.total,
+            sale->drink.price,
+            sale->drink.amount,
             sale->food.weight,
             sale->food.total,
             sale->total,
@@ -71,9 +74,10 @@ int checkIfhasDrink()
     }
 }
 
-struct DrinkData getDrinkData()
+struct Drink getDrinkData()
 {
-    struct DrinkData drink = {
+    struct Drink drink = {
+        .id = 0,
         .amount = 0,
         .price = 0.0f,
         .total = 0.0f};
@@ -111,9 +115,10 @@ struct DrinkData getDrinkData()
             break;
         }
 
-        if (drinkType > 0 && drinkType < 5)
+      
         {
             isDrinkTypeValid = 0;
+            drink.id = drinkType;
         }
     }
 
@@ -164,7 +169,12 @@ void registerNewSale()
 {
     struct Sale sale = {
         .id = rand() % 1000,
-        .drinkTotal = 0.0f,
+        .drink = {
+            .amount = 0,
+            .id = 0,
+            .price = 0,
+            .total = 0,
+        },
         .food = {
             .weight = 0.0f,
             .total = 0.0f,
@@ -192,12 +202,12 @@ void registerNewSale()
 
     if (hasDrink == 1)
     {
-        struct DrinkData drink = getDrinkData();
-        sale.drinkTotal = drink.amount * drink.price;
-        printf("Total em bebidas: R$%.2f\n", sale.drinkTotal);
+        struct Drink drink = getDrinkData();
+        sale.drink.total = drink.amount * drink.price;
+        printf("Total em bebidas: R$%.2f\n", sale.drink.total);
     }
 
-    sale.total = sale.food.total + sale.drinkTotal;
+    sale.total = sale.food.total + sale.drink.total;
     printf("\nTotal da Refeição: R$%.2f\n", sale.total);
     printf("- - - - - - - - - - - -\n");
 
