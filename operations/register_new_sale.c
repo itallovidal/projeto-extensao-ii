@@ -99,16 +99,16 @@ struct Drink getDrinkData()
 
         switch (drinkType)
         {
-        case 1:
+        case SODA:
             drink.price = 5.00;
             break;
-        case 2:
+        case BEER:
             drink.price = 7.00;
             break;
-        case 3:
+        case WATER:
             drink.price = 3.00;
             break;
-        case 4:
+        case JUICE:
             drink.price = 6.00;
             break;
         default:

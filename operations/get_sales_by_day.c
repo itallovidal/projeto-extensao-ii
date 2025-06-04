@@ -18,10 +18,11 @@ struct SaleList getAllSales()
   struct Sale currentSale;
 
   int saleTypeTemp;
+  int drinkType;
 
   while (fscanf(file, "%d %d %f %f %d %f %f %f %d %ld",
                 &currentSale.id,
-                &currentSale.drink.id,
+                &drinkType,
                 &currentSale.drink.total,
                 &currentSale.drink.price,
                 &currentSale.drink.amount,
@@ -32,6 +33,7 @@ struct SaleList getAllSales()
                 &currentSale.date) == 10)
   {
     currentSale.saleType = (SaleType)saleTypeTemp;
+    currentSale.drink.id = (enum DrinkType)drinkType;
     saleList.sales[saleList.count] = currentSale;
     saleList.count++;
 

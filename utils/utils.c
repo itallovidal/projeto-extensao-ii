@@ -49,16 +49,16 @@ void printSales(struct SaleList *saleList)
 
     switch (saleList->sales[i].drink.id)
     {
-    case 1:
+    case SODA:
       strcpy(drink, "Refrigerante");
       break;
-    case 2:
+    case BEER:
       strcpy(drink, "Cerveja");
       break;
-    case 3:
+    case WATER:
       strcpy(drink, "Água");
       break;
-    case 4:
+    case JUICE:
       strcpy(drink, "Suco");
       break;
 
