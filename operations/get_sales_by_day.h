@@ -1,3 +1,2 @@
-#include "../utils/utils.h"
-
 void showDailySales();
+struct SaleList getAllSales();

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "../utils/utils.h"
 
-struct SaleList getSalesByDay()
+struct SaleList getAllSales()
 {
   struct SaleList saleList = {
       .count = 0,
@@ -19,7 +19,7 @@ struct SaleList getSalesByDay()
 
   int saleTypeTemp;
 
-  while (fscanf(file, "%d %f %f %f %f %d %ld",
+  while (fscanf(file, "%d %d %f %f %d %f %f %f %d %ld",
                 &currentSale.id,
                 &currentSale.drink.id,
                 &currentSale.drink.total,
@@ -51,7 +51,7 @@ void showDailySales()
   printf("Carregando vendas registradas..");
   printf("\n\n- - - - - - - - - - \n\n");
 
-  struct SaleList saleList = getSalesByDay();
+  struct SaleList saleList = getAllSales();
 
   printf("Total de %d vendas carregadas com sucesso.\n\n", saleList.count);
 

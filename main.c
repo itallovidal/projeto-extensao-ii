@@ -1,9 +1,11 @@
 #include "operations/register_new_sale.h"
 #include "operations/get_sales_by_day.h"
 #include "operations/get_sales_by_month.h"
+#include "utils/utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <time.h>
 
 int main()
 {

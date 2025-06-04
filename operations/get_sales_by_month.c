@@ -1,48 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../utils/utils.h"
+#include "get_sales_by_day.h"
 #include <string.h>
-
-struct SaleList getSalesByMonth()
-{
-    struct SaleList saleList = {
-        .count = 0,
-        .sales = malloc(sizeof(struct Sale) * 10),
-    };
-
-    FILE *file = fopen(SALES_FILE_PATH, "r");
-    if (file == NULL)
-    {
-        return saleList;
-    }
-
-    struct Sale currentSale;
-
-    int saleTypeTemp;
-
-    while (fscanf(file, "%d %f %f %f %f %d %ld",
-                  &currentSale.id,
-                  &currentSale.drinkTotal,
-                  &currentSale.food.weight,
-                  &currentSale.food.total,
-                  &currentSale.total,
-                  &saleTypeTemp,
-                  &currentSale.date) == 7)
-    {
-        currentSale.saleType = (SaleType)saleTypeTemp;
-        saleList.sales[saleList.count] = currentSale;
-        saleList.count++;
-
-        if (saleList.count % 10 == 0)
-        {
-            saleList.sales = realloc(saleList.sales, sizeof(struct Sale) * (saleList.count + 10));
-        }
-    }
-
-    fclose(file);
-
-    return saleList;
-}
 
 struct Hashmap getSalesByMonthHashmap(struct SaleList *saleList)
 {
@@ -79,7 +39,7 @@ void showMonthlySales()
     printf("Carregando vendas registradas..");
     printf("\n\n- - - - - - - - - - \n\n");
 
-    struct SaleList saleList = getSalesByMonth();
+    struct SaleList saleList = getAllSales();
     struct Hashmap MonthlyHashmap = getSalesByMonthHashmap(&saleList);
 
     printSalesByMonth(&MonthlyHashmap);
