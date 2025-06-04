@@ -85,8 +85,8 @@ struct Drink getDrinkData()
 
     int drinkType;
 
-    int isDrinkTypeValid = 1;
-    while (isDrinkTypeValid)
+    int keepAskingDrink = 1;
+    while (keepAskingDrink)
     {
         printf("\nQual bebida foi consumida?\n");
 
@@ -118,7 +118,7 @@ struct Drink getDrinkData()
 
         if (drinkType > 0 && drinkType < 5)
         {
-            isDrinkTypeValid = 0;
+            keepAskingDrink = 0;
             drink.id = drinkType;
         }
     }
