@@ -17,7 +17,7 @@ int main()
   while (isRunning)
   {
     int option;
-    int shouldPause = 0;
+  
 
     menu();
     scanf("%d", &option);
@@ -28,15 +28,12 @@ int main()
     {
    case 1:
       registerNewSale();
-      shouldPause = 1;
       break;
     case 2:
       showDailySales();
-      shouldPause = 1;
       break;
     case 3:
       showMonthlySales();
-      shouldPause = 1;
       break;
     case 4:
       break;
@@ -46,9 +43,6 @@ int main()
     default:
       break;
     }
-    
-    if (shouldPause)
-      printPause();
   }
 
   return 0;
