@@ -80,7 +80,8 @@ struct Drink getDrinkData()
         .id = 0,
         .amount = 0,
         .price = 0.0f,
-        .total = 0.0f};
+        .total = 0.0f,
+    };
 
     int drinkType;
 
@@ -115,7 +116,7 @@ struct Drink getDrinkData()
             break;
         }
 
-      
+        if (drinkType > 0 && drinkType < 5)
         {
             isDrinkTypeValid = 0;
             drink.id = drinkType;
@@ -131,12 +132,12 @@ struct Drink getDrinkData()
         if (drink.amount >= 0)
         {
             printf("\nAdicionando %d bebida(s) ao pedido.\n", drink.amount);
+            drink.total = drink.amount * drink.price;
+
             return drink;
         }
-        else
-        {
-            printf("Quantidade inválida. Tente novamente.\n");
-        }
+
+        printf("Quantidade inválida. Tente novamente.\n");
     }
 }
 
@@ -144,7 +145,8 @@ struct Food getMealPrice()
 {
     struct Food food = {
         .weight = 0.0f,
-        .total = 0.0f};
+        .total = 0.0f,
+    };
 
     while (1)
     {
@@ -172,8 +174,8 @@ void registerNewSale()
         .drink = {
             .amount = 0,
             .id = 0,
-            .price = 0,
-            .total = 0,
+            .price = 0.0f,
+            .total = 0.0f,
         },
         .food = {
             .weight = 0.0f,
@@ -202,8 +204,7 @@ void registerNewSale()
 
     if (hasDrink == 1)
     {
-        struct Drink drink = getDrinkData();
-        sale.drink.total = drink.amount * drink.price;
+        sale.drink = getDrinkData();
         printf("Total em bebidas: R$%.2f\n", sale.drink.total);
     }
 

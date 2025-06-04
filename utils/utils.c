@@ -29,11 +29,12 @@ void menu()
 
 void printSales(struct SaleList *saleList)
 {
-  printf(" id | Total | Refeição  \n");
+  printf(" id | Total | Refeição | Bebida Consumida | Quantidade de Bebidas    \n");
 
   for (int i = 0; i < saleList->count; i++)
   {
     char meal[24] = "";
+    char drink[24] = "";
 
     switch (saleList->sales[i].saleType)
     {
@@ -46,7 +47,27 @@ void printSales(struct SaleList *saleList)
       break;
     }
 
-    printf("%d | R$%.f | %s \n", saleList->sales[i].id, saleList->sales[i].total, meal);
+    switch (saleList->sales[i].drink.id)
+    {
+    case 1:
+      strcpy(drink, "Refrigerante");
+      break;
+    case 2:
+      strcpy(drink, "Cerveja");
+      break;
+    case 3:
+      strcpy(drink, "Água");
+      break;
+    case 4:
+      strcpy(drink, "Suco");
+      break;
+
+    default:
+      strcpy(drink, "N/A");
+      break;
+    }
+
+    printf("%d | R$%.f | %s | %s | %d\n", saleList->sales[i].id, saleList->sales[i].total, meal, drink, saleList->sales[i].drink.amount);
   }
 }
 
