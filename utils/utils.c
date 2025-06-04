@@ -105,10 +105,9 @@ struct tm extractTime(long int timestamp)
 
 void printPause()
 {
-  printf("\nDigite qualquer coisa para continuar...");
-
-  char dummy;
-  scanf(" %c", &dummy);
+  printf("\nPressione Enter para continuar...");
+  getchar(); 
+  getchar(); 
 }
 
 int getMapIndex(struct Hashmap *hashmap, int id)
