@@ -1,8 +1,4 @@
 #include "./utils.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
 
 void clearTerminal()
 {
@@ -22,6 +18,7 @@ void menu()
   printf("2 - Relatório Diário\n");
   printf("3 - Relatório Mensal\n");
   printf("- - - - - - - - - - - -\n");
+  printf("4 - Organizar Vendas por Data\n");
   printf("5 - Sair");
   printf("\n\n- - - - - - - - - - \n\n");
   printf("-> ");
@@ -29,7 +26,7 @@ void menu()
 
 void printSales(struct SaleList *saleList)
 {
-  printf(" id | Total | Refeição | Bebida Consumida | Quantidade de Bebidas    \n");
+  printf(" id | Total | Refeição | Bebida Consumida | Quantidade de Bebidas \n");
 
   for (int i = 0; i < saleList->count; i++)
   {
