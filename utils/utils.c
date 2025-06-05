@@ -26,7 +26,7 @@ void menu()
 
 void printSales(struct SaleList *saleList)
 {
-  printf(" id | Total | Refeição | Bebida Consumida | Quantidade de Bebidas \n");
+  printf(" id | Total | Refeição | Bebida | Qtd | Data e Hora\n");
 
   for (int i = 0; i < saleList->count; i++)
   {
@@ -40,7 +40,9 @@ void printSales(struct SaleList *saleList)
       break;
     case MEAL_BOX:
       strcpy(meal, "Quentinha");
+      break;
     default:
+      strcpy(meal, "N/A");
       break;
     }
 
@@ -58,15 +60,30 @@ void printSales(struct SaleList *saleList)
     case JUICE:
       strcpy(drink, "Suco");
       break;
-
     default:
       strcpy(drink, "N/A");
       break;
     }
 
-    printf("%d | R$%.f | %s | %s | %d\n", saleList->sales[i].id, saleList->sales[i].total, meal, drink, saleList->sales[i].drink.amount);
+    struct tm saleTime = extractTime(saleList->sales[i].date);
+    char dateStr[32];
+    sprintf(dateStr, "%02d/%02d/%d %02d:%02d",
+            saleTime.tm_mday,
+            saleTime.tm_mon + 1,
+            saleTime.tm_year + 1900,
+            saleTime.tm_hour,
+            saleTime.tm_min);
+
+    printf("%d | R$%.2f | %s | %s | %d | %s\n",
+           saleList->sales[i].id,
+           saleList->sales[i].total,
+           meal,
+           drink,
+           saleList->sales[i].drink.amount,
+           dateStr);
   }
 }
+
 
 void printSalesByMonth(struct Hashmap *monthlyHashmap)
 {
