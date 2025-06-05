@@ -1,6 +1,14 @@
+#ifndef TYPES_H
+#define TYPES_H
+
+#include <locale.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+
 #define KILO_PRICE 50.0f
 #define SALES_FILE_PATH "sales.txt"
-#include <time.h>
 
 typedef enum
 {
@@ -45,3 +53,5 @@ struct SaleList
     int count;
     struct Sale *sales;
 };
+
+#endif 

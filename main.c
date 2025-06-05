@@ -1,11 +1,9 @@
 #include "operations/register_new_sale.h"
 #include "operations/get_sales_by_day.h"
 #include "operations/get_sales_by_month.h"
-#include "utils/utils.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <locale.h>
-#include <time.h>
+#include "operations/sort_txt.h"
+
+#include "types.h"
 
 int main()
 {
@@ -17,7 +15,6 @@ int main()
   while (isRunning)
   {
     int option;
-  
 
     menu();
     scanf("%d", &option);
@@ -26,7 +23,7 @@ int main()
 
     switch (option)
     {
-   case 1:
+    case 1:
       registerNewSale();
       break;
     case 2:
@@ -36,6 +33,7 @@ int main()
       showMonthlySales();
       break;
     case 4:
+      sortTXT();
       break;
     case 5:
       isRunning = 0;
