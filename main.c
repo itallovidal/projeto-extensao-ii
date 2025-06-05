@@ -7,7 +7,7 @@
 
 int main()
 {
-  setlocale(LC_ALL, "Portuguese");
+  // setlocale(LC_ALL, "Portuguese");
   srand(time(NULL));
 
   int isRunning = 1;

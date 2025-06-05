@@ -26,7 +26,9 @@ void menu()
 
 void printSales(struct SaleList *saleList)
 {
-  printf(" id | Total | Refeição | Bebida | Qtd | Data e Hora\n");
+  printf("\tid\t|\tTotal\t|\tRefeição\t|\tBebida\t|\tQtd.\t|\tData e Hora\t\n");
+
+  float total = 0;
 
   for (int i = 0; i < saleList->count; i++)
   {
@@ -74,20 +76,23 @@ void printSales(struct SaleList *saleList)
             saleTime.tm_hour,
             saleTime.tm_min);
 
-    printf("%d | R$%.2f | %s | %s | %d | %s\n",
+    printf("\t%d\t|\tR$%.2f\t|\t%s\t|%-15s|\t%d\t|\t%s\t\n",
            saleList->sales[i].id,
            saleList->sales[i].total,
            meal,
            drink,
            saleList->sales[i].drink.amount,
            dateStr);
-  }
-}
 
+    total += saleList->sales[i].total;
+  }
+
+  printf("\nO total de vendas até hoje foi de: R$%.2f\n\n", total);
+}
 
 void printSalesByMonth(struct Hashmap *monthlyHashmap)
 {
-  printf("Mês | Total \n");
+  printf("\tMês\t|\tTotal\t\n");
 
   for (int i = 0; i < monthlyHashmap->size; i++)
   {
@@ -99,7 +104,7 @@ void printSalesByMonth(struct Hashmap *monthlyHashmap)
     char month[20];
     strcpy(month, monthName[monthlyHashmap->map[i].id]);
 
-    printf("%s | R$%.2f \n", month, monthlyHashmap->map[i].total);
+    printf("%-18s|\tR$%.2f\t\n", month, monthlyHashmap->map[i].total);
   }
 }
 
@@ -109,7 +114,7 @@ struct tm extractTime(long int timestamp)
   struct tm formattedDate;
 
 #ifdef _WIN32
-  localtime_s(&formattedDate, &rawTime);
+  formattedDate = *localtime(&rawTime);
 #else
   formattedDate = *gmtime(&rawTime);
 #endif
@@ -120,8 +125,8 @@ struct tm extractTime(long int timestamp)
 void printPause()
 {
   printf("\nPressione Enter para continuar...");
-  getchar(); 
-  getchar(); 
+  getchar();
+  getchar();
 }
 
 int getMapIndex(struct Hashmap *hashmap, int id)
