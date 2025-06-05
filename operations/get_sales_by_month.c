@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "../utils/utils.h"
-#include "get_sales_by_day.h"
-#include <string.h>
+#include "./get_sales_by_month.h"
 
 struct Hashmap getSalesByMonthHashmap(struct SaleList *saleList)
 {

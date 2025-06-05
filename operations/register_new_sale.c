@@ -1,31 +1,4 @@
-#include "register_new_sale.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include "../types.h"
-
-void saveSale(struct Sale *sale)
-{
-
-    FILE *file = fopen(SALES_FILE_PATH, "a");
-    if (file == NULL)
-    {
-        return;
-    }
-
-    fprintf(file, "%d %d %.2f %.2f %d %.2f %.2f %.2f %d %ld \n",
-            sale->id,
-            sale->drink.id,
-            sale->drink.total,
-            sale->drink.price,
-            sale->drink.amount,
-            sale->food.weight,
-            sale->food.total,
-            sale->total,
-            sale->saleType,
-            sale->date);
-
-    fclose(file);
-}
+#include "./register_new_sale.h"
 
 SaleType getSaleType()
 {
