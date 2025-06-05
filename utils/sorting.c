@@ -1,4 +1,4 @@
-#include "../types.h"
+#include "./sorting.h"
 
 // selection sort
 void sortSalesByDate(struct SaleList *saleList)
@@ -19,6 +19,21 @@ void sortSalesByDate(struct SaleList *saleList)
             struct Sale temp = saleList->sales[i];
             saleList->sales[i] = saleList->sales[highestNumberPosition];
             saleList->sales[highestNumberPosition] = temp;
+        }
+    }
+}
+void sortMonthSalesByTotal(struct Hashmap *monthlyHashmap)
+{
+    for (int i = 0; i < monthlyHashmap->size; i++)
+    {
+        for (int j = 0; j < monthlyHashmap->size - i; j++)
+        {
+            if (monthlyHashmap->map[j].total < monthlyHashmap->map[j + 1].total)
+            {
+                struct Map temp = monthlyHashmap->map[j];
+                monthlyHashmap->map[j] = monthlyHashmap->map[j + 1];
+                monthlyHashmap->map[j + 1] = temp;
+            }
         }
     }
 }

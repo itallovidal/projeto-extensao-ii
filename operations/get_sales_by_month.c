@@ -36,9 +36,9 @@ void showMonthlySales()
     printf("\n\n- - - - - - - - - - \n\n");
 
     struct SaleList saleList = getAllSales();
-    struct Hashmap MonthlyHashmap = getSalesByMonthHashmap(&saleList);
-
-    printSalesByMonth(&MonthlyHashmap);
+    struct Hashmap monthlyHashmap = getSalesByMonthHashmap(&saleList);
+    sortMonthSalesByTotal(&monthlyHashmap);
+    printSalesByMonth(&monthlyHashmap);
     printPause();
 
     return;

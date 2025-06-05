@@ -4,7 +4,8 @@
 #include "../types.h"
 #include "../utils/database.h"
 #include "../utils/utils.h"
+#include "../utils/sorting.h"
 
 void showMonthlySales();
 
-#endif 
+#endif
