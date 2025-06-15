@@ -18,6 +18,4 @@ void sortTXT()
 
     printf("\nDigite qualquer coisa para continuar...");
 
-    char dummy;
-    scanf(" %c", &dummy);
 }
