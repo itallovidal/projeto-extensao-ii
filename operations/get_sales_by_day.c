@@ -13,8 +13,5 @@ void showDailySales()
 
   printf("Digite qualquer coisa para continuar...");
 
-  char dummy;
-  scanf(" %c", &dummy);
-
   return;
 }
