@@ -189,8 +189,7 @@ void registerNewSale()
 
     printf("Venda registrada com sucesso!\n\n");
     printf("Digite qualquer coisa para continuar.\n");
-    char dummy;
-    scanf(" %c", &dummy);
+
 
     return;
 }
