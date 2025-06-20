@@ -196,6 +196,6 @@ void registerNewSale()
     printf("Venda registrada com sucesso!\n\n");
     printf("Digite qualquer coisa para continuar.\n");
 
-
+    printPause();
     return;
 }

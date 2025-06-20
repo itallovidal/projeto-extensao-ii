@@ -12,6 +12,6 @@ void showDailySales()
   printSales(&saleList);
 
   printf("Digite qualquer coisa para continuar...");
-
+  printPause();
   return;
 }

@@ -18,4 +18,5 @@ void sortTXT()
 
     printf("\nDigite qualquer coisa para continuar...");
 
+    printPause();
 }
