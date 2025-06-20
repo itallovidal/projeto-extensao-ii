@@ -1,5 +1,11 @@
 #include "./register_new_sale.h"
 
+// No registro de uma Nova Venda, nós temos basicamente duas opcões
+// A opcão de adicionar a venda como tipo quentinha, e como tipo peso
+
+// No tipo quentinha os valores serão fixos, como consta no PDF.
+// No tipo peso os valores variam com base no peso do KG.
+
 SaleType getSaleType()
 {
     while (1)
