@@ -1,5 +1,10 @@
 #include "./database.h"
 
+// Toda vez que uma venda é realizada, guardamos no TXT
+// as informacões com uma ordem específica. Isso faz com que
+// na leitura, consigamos montar um vetor de vendas com mais
+// facilidade
+
 void saveSale(struct Sale *sale)
 {
     FILE *file = fopen(SALES_FILE_PATH, "a");
